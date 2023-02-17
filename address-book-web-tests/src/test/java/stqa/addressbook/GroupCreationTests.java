@@ -10,17 +10,17 @@ public class GroupCreationTests {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        System.setProperty("chromedriver.driver", "/Users/nikolay.primizenkin/geckodriver");
+        System.setProperty("chromedriver.driver", "");
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    private void login() {
+    private void login(String username, String pass) {
         wd.get("http://localhost/addressbook/edit.php");
         wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.name("pass")).sendKeys(pass);
         wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
@@ -33,14 +33,14 @@ public class GroupCreationTests {
         wd.findElement(By.name("new")).click();
     }
 
-    private void fillGroupForm() {
+    private void fillGroupForm(GroupData groupData) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("Test");
+        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
         wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("Test Header");
+        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
         wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("Test Footer");
+        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
     private void submitGroupForm() {
@@ -57,10 +57,10 @@ public class GroupCreationTests {
 
     @Test
     public void testGroupCreation() throws Exception {
-        login();
+        login("admin", "secret");
         gotoGroupPage();
         initGroupCreation();
-        fillGroupForm();
+        fillGroupForm(new GroupData("Test", "Test Header", "Test Footer"));
         submitGroupForm();
         returnToGroupPage();
         logout();
