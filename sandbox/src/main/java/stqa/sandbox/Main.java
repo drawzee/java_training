@@ -1,3 +1,5 @@
+package stqa.sandbox;
+
 public class Main {
 
     public static double distance(double x1, double x2, double y1, double y2) {
@@ -7,10 +9,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        double x1 = 5.5;
-        double x2 = 9.5;
-        double y1 = 1.5;
-        double y2 = 9.5;
+        double x1 = 1.5;
+        double x2 = 3.5;
+        double y1 = 2.5;
+        double y2 = 3.5;
         double distance = distance(x1, x2, y1, y2);
         System.out.println("Distance between (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ") is " + distance);
 
