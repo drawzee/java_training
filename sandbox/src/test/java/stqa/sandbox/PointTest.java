@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.sandbox.Point;
 
-public class DistanceTests {
+public class PointTest {
 
     @Test
     public void distanceTest() {
