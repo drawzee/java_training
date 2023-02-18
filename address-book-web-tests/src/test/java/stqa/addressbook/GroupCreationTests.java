@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GroupCreationTests {
+
     private WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
