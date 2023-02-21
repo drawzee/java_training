@@ -14,7 +14,6 @@ public class AddContactTests {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        System.setProperty("chromedriver.driver", "/Users/nikolay.primizenkin/geckodriver");
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     }
