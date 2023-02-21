@@ -18,7 +18,7 @@ public class Main {
 
         Point p1 = new Point(5.5, 1.5);
         Point p2 = new Point(9.5, 9.5);
-        double pointDistance = Point.distance(p1, p2);
+        double pointDistance = p1.distance(p2);
         System.out.println("Distance between (" + p1.x + ", " + p1.y + ") and (" + p2.x + ", " + p2.y + ") is " + pointDistance);
     }
 
