@@ -7,9 +7,9 @@ public class AddContactTests extends TestBase {
 
     @Test
     public void testAddContactTests() throws Exception {
-        app.login("admin", "secret");
-        app.initContactAdding();
-        app.fillContactForm(new ContactData(
+        app.getSessionHelper().login("admin", "secret");
+        app.getContactHelper().initContactAdding();
+        app.getContactHelper().fillContactForm(new ContactData(
                 "Test",
                 "Test",
                 "Test LTD",
@@ -17,9 +17,9 @@ public class AddContactTests extends TestBase {
                 "123123123",
                 "email@test.com")
         );
-        app.submitContactForm();
-        app.returnToHomePage();
-        app.logout();
+        app.getContactHelper().submitContactForm();
+        app.getNavigationHelper().returnToHomePage();
+        app.getSessionHelper().logout();
     }
 
 }
