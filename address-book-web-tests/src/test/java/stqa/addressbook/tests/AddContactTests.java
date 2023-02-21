@@ -1,14 +1,15 @@
-package stqa.addressbook;
+package stqa.addressbook.tests;
 
 import org.testng.annotations.Test;
+import stqa.addressbook.model.ContactData;
 
 public class AddContactTests extends TestBase {
 
     @Test
     public void testAddContactTests() throws Exception {
-        login("admin", "secret");
-        initContactAdding();
-        fillContactForm(new ContactData(
+        app.login("admin", "secret");
+        app.initContactAdding();
+        app.fillContactForm(new ContactData(
                 "Test",
                 "Test",
                 "Test LTD",
@@ -16,9 +17,9 @@ public class AddContactTests extends TestBase {
                 "123123123",
                 "email@test.com")
         );
-        submitContactForm();
-        returnToHomePage();
-        logout();
+        app.submitContactForm();
+        app.returnToHomePage();
+        app.logout();
     }
 
 }
