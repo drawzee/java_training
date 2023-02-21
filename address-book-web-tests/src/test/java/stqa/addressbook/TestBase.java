@@ -10,7 +10,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-public class    TestBase {
+public class TestBase {
+
     private WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
@@ -110,4 +111,5 @@ public class    TestBase {
         wd.findElement(By.linkText("home")).click();
         wd.get("http://localhost/addressbook/");
     }
+
 }
