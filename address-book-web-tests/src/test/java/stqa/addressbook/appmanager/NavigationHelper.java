@@ -19,4 +19,8 @@ public class NavigationHelper extends HelperBase {
         wd.get("http://localhost/addressbook/");
     }
 
+    public void returnToGroupPage() {
+        click(By.linkText("groups"));
+    }
+
 }
