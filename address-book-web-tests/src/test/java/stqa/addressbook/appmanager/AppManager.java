@@ -13,6 +13,7 @@ public class AppManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
+    private HelperBase baseHelper;
 
     public void init() {
         wd = new ChromeDriver();
@@ -21,6 +22,7 @@ public class AppManager {
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
+        baseHelper = new HelperBase(wd);
     }
 
     public void stop() {
@@ -41,6 +43,10 @@ public class AppManager {
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
+    }
+
+    public HelperBase getBaseHelper() {
+        return baseHelper;
     }
 
 }

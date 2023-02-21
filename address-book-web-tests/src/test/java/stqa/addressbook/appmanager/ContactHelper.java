@@ -10,7 +10,6 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-
     public void initContactAdding() {
         click(By.linkText("add new"));
         wd.get("http://localhost/addressbook/edit.php");
@@ -27,6 +26,22 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactForm() {
         click(By.xpath("//div[@id='content']/form/input[21]"));
+    }
+
+    public void initContactModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
+    }
+
+    public void initContactDeletion() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("//div[@id='content']/form/input[22]"));
+    }
+
+    public void selectContact() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td"));
     }
 
 }
