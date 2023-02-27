@@ -24,11 +24,11 @@ public class AppManager {
     }
 
     public void init() {
-        if (browser == Browser.FIREFOX) {
+        if (browser.equals(Browser.FIREFOX)) {
             wd = new FirefoxDriver();
-        } else if (browser == Browser.CHROME) {
+        } else if (browser.equals(Browser.CHROME)) {
             wd = new ChromeDriver();
-        } else if (browser == Browser.EDGE) {
+        } else if (browser.equals(Browser.EDGE)) {
             wd = new EdgeDriver();
         }
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
