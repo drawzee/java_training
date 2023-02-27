@@ -15,10 +15,12 @@ public class AddContactTests extends TestBase {
                 "Test LTD",
                 "Test st., 123",
                 "123123123",
-                "email@test.com")
+                "email@test.com",
+                "Test"),
+                true
         );
         app.getContactHelper().submitContactForm();
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
         app.getSessionHelper().logout();
     }
 

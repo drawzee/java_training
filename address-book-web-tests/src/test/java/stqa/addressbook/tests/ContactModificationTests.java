@@ -15,10 +15,12 @@ public class ContactModificationTests extends TestBase {
                 "Test LTD",
                 "Test st., 123",
                 "123123123",
-                "email@test.com")
+                "email@test.com",
+                "Test"),
+                true
         );
         app.getContactHelper().submitContactForm();
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData(
                 "Name",
@@ -26,7 +28,9 @@ public class ContactModificationTests extends TestBase {
                 "New Test LTD",
                 "New Test st., 123",
                 "999999999",
-                "new_email@test.com")
+                "new_email@test.com",
+                null),
+                false
         );
         app.getContactHelper().submitContactModification();
         app.getSessionHelper().logout();
