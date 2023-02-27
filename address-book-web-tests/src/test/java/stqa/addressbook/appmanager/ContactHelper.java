@@ -2,6 +2,8 @@ package stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import stqa.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -15,13 +17,19 @@ public class ContactHelper extends HelperBase {
         wd.get("http://localhost/addressbook/edit.php");
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData,boolean create) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getHome());
         type(By.name("email"), contactData.getEmail());
+
+        if (create) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")), "Element is present");
+        }
     }
 
     public void submitContactForm() {

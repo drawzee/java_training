@@ -9,18 +9,24 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void gotoGroupPage() {
-        click(By.linkText("groups"));
+    public void goToGroupPage() {
+        if (isElementPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+                && isElementPresent(By.name("new"))) {
+            return;
+        } else {
+            click(By.linkText("groups"));
+        }
         wd.get("http://localhost/addressbook/group.php");
     }
 
-    public void returnToHomePage() {
-        click(By.linkText("home"));
+    public void goToHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        } else {
+            click(By.linkText("home"));
+        }
         wd.get("http://localhost/addressbook/");
-    }
-
-    public void returnToGroupPage() {
-        click(By.linkText("groups"));
     }
 
 }
