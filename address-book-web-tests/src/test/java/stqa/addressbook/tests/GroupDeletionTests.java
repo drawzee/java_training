@@ -9,9 +9,9 @@ public class GroupDeletionTests extends TestBase {
     public void groupDeletionTest() {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().initGroupCreation();
-        app.getGroupHelper().fillGroupForm(new GroupData("Test", "Test Header", "Test Footer"));
-        app.getNavigationHelper().goToGroupPage();
+        if (!app.getGroupHelper().groupExists()) {
+            app.getGroupHelper().createGroup(new GroupData("Test", null, null));
+        }
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().deleteGroup();
         app.getSessionHelper().logout();

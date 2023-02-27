@@ -14,6 +14,12 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
+    public void createGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupForm();
+    }
+
     public void selectGroup() {
         click(By.name("selected[]"));
     }
@@ -36,8 +42,18 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    public void modifyGroup(GroupData updatedData) {
+        initGroupModification();
+        fillGroupForm(updatedData);
+        submitGroupModification();
+    }
+
     public void deleteGroup() {
         click(By.name("delete"));
+    }
+
+    public boolean groupExists() {
+        return isElementPresent(By.name("selected[]"));
     }
 
 }
