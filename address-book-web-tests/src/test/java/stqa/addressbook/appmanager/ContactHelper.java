@@ -17,7 +17,13 @@ public class ContactHelper extends HelperBase {
         wd.get("http://localhost/addressbook/edit.php");
     }
 
-    public void fillContactForm(ContactData contactData,boolean create) {
+    public void createContact(ContactData contactData) {
+        initContactAdding();
+        fillContactForm(contactData,true);
+        submitContactForm();
+    }
+
+    public void fillContactForm(ContactData contactData, boolean create) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("company"), contactData.getCompany());
@@ -37,7 +43,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
+        click(By.xpath("//img[@alt='Edit']"));
     }
 
     public void initContactDeletion() {
@@ -50,6 +56,10 @@ public class ContactHelper extends HelperBase {
 
     public void selectContact() {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td"));
+    }
+
+    public boolean contactExists() {
+        return isElementPresent(By.name("selected[]"));
     }
 
 }

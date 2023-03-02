@@ -1,9 +1,7 @@
 package stqa.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
 
@@ -17,7 +15,7 @@ public class HelperBase {
     protected void type(By locator, String text) {
         click(locator);
         if (text != null) {
-                String currentText = wd.findElement(locator).getAttribute("value");
+            String currentText = wd.findElement(locator).getAttribute("value");
             if (!text.equals(currentText)) {
                 wd.findElement(locator).clear();
                 wd.findElement(locator).sendKeys(text);
@@ -37,7 +35,7 @@ public class HelperBase {
         try {
             wd.findElement(by);
             return true;
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException ex) {
             return false;
         }
     }

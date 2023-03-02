@@ -16,8 +16,8 @@ public class AddContactTests extends TestBase {
                 "Test st., 123",
                 "123123123",
                 "email@test.com",
-                "Test"),
-                true
+                "qwe"
+                ), true
         );
         app.getContactHelper().submitContactForm();
         app.getNavigationHelper().goToHomePage();
