@@ -17,6 +17,7 @@ public class ContactData {
         this.address = address;
         this.home = home;
         this.email = email;
+        this.group = group;
     }
 
     public String getFirstname() {
