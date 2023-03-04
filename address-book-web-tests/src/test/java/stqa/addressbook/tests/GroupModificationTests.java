@@ -4,22 +4,24 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class GroupModificationTests extends TestBase {
 
     @Test
     public void groupModificationTest() {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
-        int initialCount = app.getGroupHelper().getGroupCount();
         if (!app.getGroupHelper().groupExists()) {
             app.getGroupHelper().createGroup(new GroupData("Test", null, null));
         }
+        List<GroupData> initialCount = app.getGroupHelper().getGroupList();
         app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().selectGroup(initialCount - 1);
+        app.getGroupHelper().selectGroup(initialCount.size() - 1);
         app.getGroupHelper().modifyGroup(new GroupData("Test1", "New header", "New footer"));
         app.getNavigationHelper().goToGroupPage();
-        int finalCount = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(finalCount, initialCount, "invalid group count");
+        List<GroupData> finalCount = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(finalCount.size(), initialCount.size(), "invalid group count");
         app.getSessionHelper().logout();
     }
 
