@@ -20,8 +20,8 @@ public class GroupHelper extends HelperBase {
         submitGroupForm();
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void fillGroupForm(GroupData groupData) {
