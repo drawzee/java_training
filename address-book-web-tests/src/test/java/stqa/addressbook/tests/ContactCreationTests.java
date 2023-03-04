@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.GroupData;
 
-public class AddContactTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
     @Test
     public void testAddContactTests() throws Exception {
