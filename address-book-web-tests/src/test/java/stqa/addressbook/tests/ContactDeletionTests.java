@@ -1,9 +1,12 @@
 package stqa.addressbook.tests;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.GroupData;
+
+import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -31,10 +34,17 @@ public class ContactDeletionTests extends TestBase {
             );
         }
         app.getNavigationHelper().goToHomePage();
-        app.getContactHelper().selectContact();
-        app.getContactHelper().initContactDeletion();
+        List<ContactData> initialContacts = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContact(initialContacts.size() - 1);
+        app.getContactHelper().deleteContact();
         app.getBaseHelper().acceptAlert();
+        app.getNavigationHelper().goToHomePage();
+        List<ContactData> finalContacts = app.getContactHelper().getContactList();
+        Assert.assertEquals(finalContacts.size(), initialContacts.size() - 1, "invalid contact count");
         app.getSessionHelper().logout();
+
+        initialContacts.remove(initialContacts.size() - 1);
+        Assert.assertEquals(initialContacts, finalContacts, "elements don't match");
     }
 
 }
