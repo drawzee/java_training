@@ -13,19 +13,19 @@ public class GroupDeletionTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().groupExists()) {
-            app.getGroupHelper().createGroup(new GroupData("Test", null, null));
+            app.getGroupHelper().createGroup(new GroupData(0, "Test", null, null));
         }
         app.getNavigationHelper().goToGroupPage();
-        List<GroupData> initialCount = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(initialCount.size() - 1);
+        List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
+        app.getGroupHelper().selectGroup(initialGroups.size() - 1);
         app.getGroupHelper().deleteGroup();
         app.getNavigationHelper().goToGroupPage();
-        List<GroupData> finalCount = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(finalCount.size(), initialCount.size() - 1, "invalid group count");
+        List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(finalGroups.size(), initialGroups.size() - 1, "invalid group count");
         app.getSessionHelper().logout();
 
-        initialCount.remove(initialCount.size() - 1);
-        Assert.assertEquals(initialCount, finalCount, "elements don't match");
+        initialGroups.remove(initialGroups.size() - 1);
+        Assert.assertEquals(initialGroups, finalGroups, "elements don't match");
     }
 
 }

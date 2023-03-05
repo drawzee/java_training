@@ -14,7 +14,7 @@ public class ContactDeletionTests extends TestBase {
         if (!app.getContactHelper().contactExists()) {
             app.getNavigationHelper().goToGroupPage();
             if (!app.getGroupHelper().groupExists()) {
-                app.getGroupHelper().createGroup(new GroupData("Test", "Test header", "Test footer"));
+                app.getGroupHelper().createGroup(new GroupData(0, "Test", "Test header", "Test footer"));
             }
             app.getNavigationHelper().goToGroupPage();
             String CurrentGroup = app.wd.findElement(By.className("group")).getText();

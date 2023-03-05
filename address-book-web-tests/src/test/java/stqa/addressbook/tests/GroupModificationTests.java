@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
@@ -13,17 +14,22 @@ public class GroupModificationTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().groupExists()) {
-            app.getGroupHelper().createGroup(new GroupData("Test", null, null));
+            app.getGroupHelper().createGroup(new GroupData(0, "Test", null, null));
         }
         app.getNavigationHelper().goToGroupPage();
-        List<GroupData> initialCount = app.getGroupHelper().getGroupList();
+        List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
         app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().selectGroup(initialCount.size() - 1);
-        app.getGroupHelper().modifyGroup(new GroupData("Test1", "New header", "New footer"));
+        app.getGroupHelper().selectGroup(initialGroups.size() - 1);
+        GroupData group = new GroupData(initialGroups.get(initialGroups.size() - 1).getId(), "Test1", "New header", "New footer");
+        app.getGroupHelper().modifyGroup(group);
         app.getNavigationHelper().goToGroupPage();
-        List<GroupData> finalCount = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(finalCount.size(), initialCount.size(), "invalid group count");
+        List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(finalGroups.size(), initialGroups.size(), "invalid group count");
         app.getSessionHelper().logout();
+
+        initialGroups.remove(initialGroups.size() - 1);
+        initialGroups.add(group);
+        Assert.assertEquals(new HashSet<>(initialGroups), new HashSet<>(finalGroups), "elements don't match");
     }
 
 }
