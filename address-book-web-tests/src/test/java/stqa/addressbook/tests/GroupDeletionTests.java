@@ -13,7 +13,7 @@ public class GroupDeletionTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().groupExists()) {
-            app.getGroupHelper().createGroup(new GroupData(0, "Test", null, null));
+            app.getGroupHelper().createGroup(new GroupData("Test", null, null));
         }
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> initialGroups = app.getGroupHelper().getGroupList();

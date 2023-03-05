@@ -15,15 +15,17 @@ public class GroupCreationTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
-        GroupData group = new GroupData(0, "Test", null, null);
+        GroupData group = new GroupData("Test", null, null);
         app.getGroupHelper().createGroup(group);
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
         Assert.assertEquals(finalGroups.size(), initialGroups.size() + 1, "invalid group count");
         app.getSessionHelper().logout();
 
-        group.setId(finalGroups.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         initialGroups.add(group);
+        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        initialGroups.sort(byId);
+        finalGroups.sort(byId);
         Assert.assertEquals(new HashSet<>(initialGroups), new HashSet<>(finalGroups), "elements don't match");
     }
 
