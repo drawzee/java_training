@@ -15,6 +15,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void contactModificationTest() {
         app.getSessionHelper().login("admin", "secret");
+        app.getNavigationHelper().goToHomePage();
         if (!app.getContactHelper().contactExists()) {
             app.getNavigationHelper().goToGroupPage();
             if (!app.getGroupHelper().groupExists()) {
