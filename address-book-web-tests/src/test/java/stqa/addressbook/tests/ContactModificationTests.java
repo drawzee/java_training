@@ -38,15 +38,16 @@ public class ContactModificationTests extends TestBase {
         app.getNavigationHelper().goToHomePage();
         List<ContactData> initialContacts = app.getContactHelper().getContactList();
         ContactData contact = new ContactData(
-                "Test",
-                "Test",
+                initialContacts.get(initialContacts.size() - 1).getId(),
+                "Test1",
+                "Test1",
                 "Test LTD",
                 "Test st., 123",
                 "123123123",
                 "email@test.com",
                 null
         );
-        app.getContactHelper().initContactModification();
+        app.getContactHelper().initContactModification(initialContacts.size() - 1);
         app.getContactHelper().fillContactForm(contact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().goToHomePage();
@@ -54,6 +55,7 @@ public class ContactModificationTests extends TestBase {
         Assert.assertEquals(finalContacts.size(), initialContacts.size(), "invalid contact count");
         app.getSessionHelper().logout();
 
+        initialContacts.remove(initialContacts.size() - 1);
         initialContacts.add(contact);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         initialContacts.sort(byId);
