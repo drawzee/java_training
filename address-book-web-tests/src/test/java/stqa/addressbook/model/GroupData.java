@@ -39,6 +39,10 @@ public class GroupData {
         return header;
     }
 
+    public String getFooter() {
+        return footer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,10 +62,6 @@ public class GroupData {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    public String getFooter() {
-        return footer;
     }
 
 }
