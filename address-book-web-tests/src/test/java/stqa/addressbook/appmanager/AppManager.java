@@ -2,6 +2,7 @@ package stqa.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Browser;
@@ -31,7 +32,7 @@ public class AppManager {
         } else if (browser.equals(Browser.EDGE)) {
             wd = new EdgeDriver();
         }
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         sessionHelper = new SessionHelper(wd);
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
