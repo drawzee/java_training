@@ -15,7 +15,7 @@ public class GroupCreationTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.goTo().groupPage();
         List<GroupData> initialGroups = app.group().list();
-        GroupData group = new GroupData("Test", null, null);
+        GroupData group = new GroupData().withName("Test");
         app.group().create(group);
         app.goTo().groupPage();
         List<GroupData> finalGroups = app.group().list();

@@ -17,7 +17,7 @@ public class ContactCreationTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
-            app.group().create(new GroupData("Test", "Test header", "Test footer"));
+            app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
         }
         app.goTo().groupPage();
         String CurrentGroup = app.wd.findElement(By.className("group")).getText();

@@ -14,7 +14,7 @@ public class GroupDeletionTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
-            app.group().create(new GroupData("Test", null, null));
+            app.group().create(new GroupData().withName("Test"));
         }
     }
 

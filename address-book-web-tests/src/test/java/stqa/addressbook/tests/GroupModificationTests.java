@@ -16,7 +16,7 @@ public class GroupModificationTests extends TestBase {
         app.getSessionHelper().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
-            app.group().create(new GroupData("Test", null, null));
+            app.group().create(new GroupData().withName("Test"));
         }
     }
 
@@ -25,7 +25,8 @@ public class GroupModificationTests extends TestBase {
         app.goTo().groupPage();
         List<GroupData> initialGroups = app.group().list();
         int index = initialGroups.size() - 1;
-        GroupData group = new GroupData(initialGroups.get(index).getId(), "Test1", "New header", "New footer");
+        GroupData group = new GroupData()
+                .withId(initialGroups.get(index).getId()).withName("Test1").withHeader("New header").withFooter("New footer");
         app.group().modify(index, group);
         app.goTo().groupPage();
         List<GroupData> finalGroups = app.group().list();
