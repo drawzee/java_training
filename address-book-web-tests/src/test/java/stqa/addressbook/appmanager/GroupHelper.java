@@ -38,18 +38,19 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
+    public void modifyGroup(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+    }
+
     public void initGroupModification() {
         click(By.name("edit"));
     }
 
     public void submitGroupModification() {
         click(By.name("update"));
-    }
-
-    public void modifyGroup(GroupData updatedData) {
-        initGroupModification();
-        fillGroupForm(updatedData);
-        submitGroupModification();
     }
 
     public void deleteGroup() {

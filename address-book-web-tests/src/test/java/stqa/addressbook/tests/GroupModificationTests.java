@@ -1,6 +1,7 @@
 package stqa.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
@@ -10,24 +11,28 @@ import java.util.List;
 
 public class GroupModificationTests extends TestBase {
 
-    @Test
-    public void groupModificationTest() {
+    @BeforeMethod
+    public void checkPreconditions() {
         app.getSessionHelper().login("admin", "secret");
         app.getNavigationHelper().goToGroupPage();
         if (!app.getGroupHelper().groupExists()) {
             app.getGroupHelper().createGroup(new GroupData("Test", null, null));
         }
+    }
+
+    @Test
+    public void groupModificationTest() {
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(initialGroups.size() - 1);
-        GroupData group = new GroupData(initialGroups.get(initialGroups.size() - 1).getId(), "Test1", "New header", "New footer");
-        app.getGroupHelper().modifyGroup(group);
+        int index = initialGroups.size() - 1;
+        GroupData group = new GroupData(initialGroups.get(index).getId(), "Test1", "New header", "New footer");
+        app.getGroupHelper().modifyGroup(index, group);
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
         Assert.assertEquals(finalGroups.size(), initialGroups.size(), "invalid group count");
         app.getSessionHelper().logout();
 
-        initialGroups.remove(initialGroups.size() - 1);
+        initialGroups.remove(index);
         initialGroups.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         initialGroups.sort(byId);
