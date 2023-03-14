@@ -13,12 +13,12 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void testGroupCreation() {
         app.getSessionHelper().login("admin", "secret");
-        app.getNavigationHelper().goToGroupPage();
-        List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
+        app.goTo().groupPage();
+        List<GroupData> initialGroups = app.group().list();
         GroupData group = new GroupData("Test", null, null);
-        app.getGroupHelper().createGroup(group);
-        app.getNavigationHelper().goToGroupPage();
-        List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
+        app.group().create(group);
+        app.goTo().groupPage();
+        List<GroupData> finalGroups = app.group().list();
         Assert.assertEquals(finalGroups.size(), initialGroups.size() + 1, "invalid group count");
         app.getSessionHelper().logout();
 

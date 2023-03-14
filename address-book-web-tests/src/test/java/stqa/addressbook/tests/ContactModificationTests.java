@@ -15,15 +15,15 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void contactModificationTest() {
         app.getSessionHelper().login("admin", "secret");
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         if (!app.getContactHelper().contactExists()) {
-            app.getNavigationHelper().goToGroupPage();
-            if (!app.getGroupHelper().groupExists()) {
-                app.getGroupHelper().createGroup(new GroupData("Test", "Test header", "Test footer"));
+            app.goTo().groupPage();
+            if (!app.group().exists()) {
+                app.group().create(new GroupData("Test", "Test header", "Test footer"));
             }
-            app.getNavigationHelper().goToGroupPage();
+            app.goTo().groupPage();
             String CurrentGroup = app.wd.findElement(By.className("group")).getText();
-            app.getNavigationHelper().goToHomePage();
+            app.goTo().goToHomePage();
             app.getContactHelper().createContact(new ContactData(
                             "Test",
                             "Test",
@@ -35,7 +35,7 @@ public class ContactModificationTests extends TestBase {
                     )
             );
         }
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         List<ContactData> initialContacts = app.getContactHelper().getContactList();
         ContactData contact = new ContactData(
                 initialContacts.get(initialContacts.size() - 1).getId(),
@@ -50,7 +50,7 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().initContactModification(initialContacts.size() - 1);
         app.getContactHelper().fillContactForm(contact, false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         List<ContactData> finalContacts = app.getContactHelper().getContactList();
         Assert.assertEquals(finalContacts.size(), initialContacts.size(), "invalid contact count");
         app.getSessionHelper().logout();

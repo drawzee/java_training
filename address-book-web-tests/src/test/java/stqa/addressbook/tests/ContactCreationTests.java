@@ -15,13 +15,13 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testAddContactTests() {
         app.getSessionHelper().login("admin", "secret");
-        app.getNavigationHelper().goToGroupPage();
-        if (!app.getGroupHelper().groupExists()) {
-            app.getGroupHelper().createGroup(new GroupData("Test", "Test header", "Test footer"));
+        app.goTo().groupPage();
+        if (!app.group().exists()) {
+            app.group().create(new GroupData("Test", "Test header", "Test footer"));
         }
-        app.getNavigationHelper().goToGroupPage();
+        app.goTo().groupPage();
         String CurrentGroup = app.wd.findElement(By.className("group")).getText();
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         List<ContactData> initialContacts = app.getContactHelper().getContactList();
         ContactData contact = new ContactData(
                 "Test",
@@ -35,7 +35,7 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().initContactAdding();
         app.getContactHelper().fillContactForm(contact, true);
         app.getContactHelper().submitContactForm();
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         List<ContactData> finalContacts = app.getContactHelper().getContactList();
         Assert.assertEquals(finalContacts.size(), initialContacts.size() + 1, "invalid contact count");
         app.getSessionHelper().logout();

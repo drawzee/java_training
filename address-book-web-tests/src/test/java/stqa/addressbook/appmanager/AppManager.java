@@ -47,7 +47,7 @@ public class AppManager {
         return sessionHelper;
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
@@ -55,7 +55,7 @@ public class AppManager {
         return contactHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 

@@ -14,21 +14,21 @@ public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void checkPreconditions() {
         app.getSessionHelper().login("admin", "secret");
-        app.getNavigationHelper().goToGroupPage();
-        if (!app.getGroupHelper().groupExists()) {
-            app.getGroupHelper().createGroup(new GroupData("Test", null, null));
+        app.goTo().groupPage();
+        if (!app.group().exists()) {
+            app.group().create(new GroupData("Test", null, null));
         }
     }
 
     @Test
     public void groupModificationTest() {
-        app.getNavigationHelper().goToGroupPage();
-        List<GroupData> initialGroups = app.getGroupHelper().getGroupList();
+        app.goTo().groupPage();
+        List<GroupData> initialGroups = app.group().list();
         int index = initialGroups.size() - 1;
         GroupData group = new GroupData(initialGroups.get(index).getId(), "Test1", "New header", "New footer");
-        app.getGroupHelper().modifyGroup(index, group);
-        app.getNavigationHelper().goToGroupPage();
-        List<GroupData> finalGroups = app.getGroupHelper().getGroupList();
+        app.group().modify(index, group);
+        app.goTo().groupPage();
+        List<GroupData> finalGroups = app.group().list();
         Assert.assertEquals(finalGroups.size(), initialGroups.size(), "invalid group count");
         app.getSessionHelper().logout();
 
