@@ -5,9 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
@@ -23,22 +21,19 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void groupModificationTest() {
         app.goTo().groupPage();
-        List<GroupData> initialGroups = app.group().list();
-        int index = initialGroups.size() - 1;
+        Set<GroupData> initialGroups = app.group().all();
+        GroupData modifiedGroup = initialGroups.iterator().next();
         GroupData group = new GroupData()
-                .withId(initialGroups.get(index).getId()).withName("Test1").withHeader("New header").withFooter("New footer");
-        app.group().modify(index, group);
+                .withId(modifiedGroup.getId()).withName("Test1").withHeader("New header").withFooter("New footer");
+        app.group().modify(group);
         app.goTo().groupPage();
-        List<GroupData> finalGroups = app.group().list();
+        Set<GroupData> finalGroups = app.group().all();
         Assert.assertEquals(finalGroups.size(), initialGroups.size(), "invalid group count");
         app.session().logout();
 
-        initialGroups.remove(index);
+        initialGroups.remove(modifiedGroup);
         initialGroups.add(group);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        initialGroups.sort(byId);
-        finalGroups.sort(byId);
-        Assert.assertEquals(new HashSet<>(initialGroups), new HashSet<>(finalGroups), "elements don't match");
+        Assert.assertEquals(initialGroups, finalGroups, "elements don't match");
     }
 
 }

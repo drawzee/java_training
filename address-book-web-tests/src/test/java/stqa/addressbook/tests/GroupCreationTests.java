@@ -4,9 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
@@ -14,19 +12,17 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         app.session().login("admin", "secret");
         app.goTo().groupPage();
-        List<GroupData> initialGroups = app.group().list();
+        Set<GroupData> initialGroups = app.group().all();
         GroupData group = new GroupData().withName("Test");
         app.group().create(group);
         app.goTo().groupPage();
-        List<GroupData> finalGroups = app.group().list();
+        Set<GroupData> finalGroups = app.group().all();
         Assert.assertEquals(finalGroups.size(), initialGroups.size() + 1, "invalid group count");
         app.session().logout();
 
+        group.withId(finalGroups.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         initialGroups.add(group);
-        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        initialGroups.sort(byId);
-        finalGroups.sort(byId);
-        Assert.assertEquals(new HashSet<>(initialGroups), new HashSet<>(finalGroups), "elements don't match");
+        Assert.assertEquals(initialGroups, finalGroups, "elements don't match");
     }
 
 }

@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.GroupData;
 
-import java.util.List;
+import java.util.Set;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -21,15 +21,15 @@ public class GroupDeletionTests extends TestBase {
     @Test
     public void groupDeletionTest() {
         app.goTo().groupPage();
-        List<GroupData> initialGroups = app.group().list();
-        int index = initialGroups.size() - 1;
-        app.group().delete(index);
+        Set<GroupData> initialGroups = app.group().all();
+        GroupData deletedGroup = initialGroups.iterator().next();
+        app.group().delete(deletedGroup);
         app.goTo().groupPage();
-        List<GroupData> finalGroups = app.group().list();
+        Set<GroupData> finalGroups = app.group().all();
         Assert.assertEquals(finalGroups.size(), initialGroups.size() - 1, "invalid group count");
         app.session().logout();
 
-        initialGroups.remove(index);
+        initialGroups.remove(deletedGroup);
         Assert.assertEquals(initialGroups, finalGroups, "elements don't match");
     }
 
