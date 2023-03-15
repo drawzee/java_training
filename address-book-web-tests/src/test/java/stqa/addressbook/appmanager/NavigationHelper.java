@@ -20,7 +20,7 @@ public class NavigationHelper extends HelperBase {
         wd.get("http://localhost/addressbook/group.php");
     }
 
-    public void goToHomePage() {
+    public void homePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;
         } else {

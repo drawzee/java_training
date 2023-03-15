@@ -43,7 +43,7 @@ public class AppManager {
         wd.quit();
     }
 
-    public SessionHelper getSessionHelper() {
+    public SessionHelper session() {
         return sessionHelper;
     }
 
@@ -51,7 +51,7 @@ public class AppManager {
         return groupHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
@@ -59,7 +59,7 @@ public class AppManager {
         return navigationHelper;
     }
 
-    public HelperBase getBaseHelper() {
+    public HelperBase base() {
         return baseHelper;
     }
 
