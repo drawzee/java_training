@@ -1,7 +1,6 @@
 package stqa.addressbook.appmanager;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
 
@@ -25,6 +24,7 @@ public class HelperBase {
 
     public void acceptAlert() {
         wd.switchTo().alert().accept();
+        wd.findElement(By.cssSelector("div.msgbox"));
     }
 
     protected void click(By locator) {

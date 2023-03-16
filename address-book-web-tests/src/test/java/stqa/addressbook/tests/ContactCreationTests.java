@@ -1,50 +1,49 @@
 package stqa.addressbook.tests;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
+import stqa.addressbook.model.Contacts;
 import stqa.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test
-    public void testAddContactTests() {
-        app.getSessionHelper().login("admin", "secret");
+    @BeforeMethod
+    public void checkPreconditions() {
+        app.session().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
             app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
         }
+    }
+
+    @Test
+    public void testAddContactTests() {
         app.goTo().groupPage();
         String CurrentGroup = app.wd.findElement(By.className("group")).getText();
-        app.goTo().goToHomePage();
-        List<ContactData> initialContacts = app.getContactHelper().getContactList();
-        ContactData contact = new ContactData(
-                "Test",
-                "Test",
-                "Test LTD",
-                "Test st., 123",
-                "123123123",
-                "email@test.com",
-                CurrentGroup
-        );
-        app.getContactHelper().initContactAdding();
-        app.getContactHelper().fillContactForm(contact, true);
-        app.getContactHelper().submitContactForm();
-        app.goTo().goToHomePage();
-        List<ContactData> finalContacts = app.getContactHelper().getContactList();
-        Assert.assertEquals(finalContacts.size(), initialContacts.size() + 1, "invalid contact count");
-        app.getSessionHelper().logout();
+        app.goTo().homePage();
+        Contacts initialContacts = app.contact().all();
+        ContactData contact = new ContactData()
+                .withFirstName("Test")
+                .withLastName("Test")
+                .withCompany("Test LTD")
+                .withAddress("Test st., 123")
+                .withHome("123123123")
+                .withEmail("email@test.com")
+                .withGroup(CurrentGroup);
+        app.contact().create(contact);
+        app.goTo().homePage();
+        Contacts finalContacts = app.contact().all();
+        assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() + 1));
+        app.session().logout();
 
-        initialContacts.add(contact);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        initialContacts.sort(byId);
-        finalContacts.sort(byId);
-        Assert.assertEquals(new HashSet<>(initialContacts), new HashSet<>(finalContacts), "elements don't match");
+        assertThat("elements don't match", finalContacts, equalTo(
+                initialContacts.withAdded(contact.withId(finalContacts.stream().mapToInt((c) -> c.getId()).max().getAsInt())
+        )));
     }
 
 }
