@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 
 public class HelperBase {
 
-
     public WebDriver wd;
 
     public HelperBase(WebDriver wd) {

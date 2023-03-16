@@ -7,7 +7,6 @@ import stqa.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.testng.Assert.*;
 
 public class GroupDeletionTests extends TestBase {
 

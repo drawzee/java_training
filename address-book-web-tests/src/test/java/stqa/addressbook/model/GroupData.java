@@ -18,7 +18,6 @@ public class GroupData {
         return this;
     }
 
-
     public GroupData withName(String name) {
         this.name = name;
         return this;
