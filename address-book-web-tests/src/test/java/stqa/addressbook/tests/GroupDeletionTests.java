@@ -26,8 +26,8 @@ public class GroupDeletionTests extends TestBase {
         GroupData deletedGroup = initialGroups.iterator().next();
         app.group().delete(deletedGroup);
         app.goTo().groupPage();
+        assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size() - 1));
         Groups finalGroups = app.group().all();
-        assertThat("invalid group count", finalGroups.size(), equalTo(initialGroups.size() - 1));
         app.session().logout();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(deletedGroup)));

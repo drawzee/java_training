@@ -28,8 +28,8 @@ public class GroupModificationTests extends TestBase {
                 .withId(modifiedGroup.getId()).withName("Test1").withHeader("New header").withFooter("New footer");
         app.group().modify(group);
         app.goTo().groupPage();
+        assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size()));
         Groups finalGroups = app.group().all();
-        assertThat("invalid group count", finalGroups.size(), equalTo(initialGroups.size()));
         app.session().logout();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(modifiedGroup).withAdded(group)));
