@@ -36,7 +36,7 @@ public class ContactModificationTests extends TestBase {
         }
     }
 
-    @Test()
+    @Test
     public void contactModificationTest() {
         app.goTo().homePage();
         Contacts initialContacts = app.contact().all();
