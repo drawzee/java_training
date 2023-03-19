@@ -12,9 +12,12 @@ public class ContactData {
     private String home;
     private String mobile;
     private String work;
+    private String home2;
     private String allPhones;
     private String email;
-    private String allAddresses;
+    private String email2;
+    private String email3;
+    private String allEmails;
     private String group;
 
     public ContactData withId(int id) {
@@ -57,6 +60,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withHome2(String home2) {
+        this.home2 = home2;
+        return this;
+    }
+
     public ContactData withAllPhones(String allPhones) {
         this.allPhones = allPhones;
         return this;
@@ -67,8 +75,18 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withAllAddresses(String allAddresses) {
-        this.allAddresses = allAddresses;
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
         return this;
     }
 
@@ -109,6 +127,10 @@ public class ContactData {
         return work;
     }
 
+    public String getHome2() {
+        return home2;
+    }
+
     public String getAllPhones() {
         return allPhones;
     }
@@ -117,8 +139,16 @@ public class ContactData {
         return email;
     }
 
-    public String getAllAddresses() {
-        return allAddresses;
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
     }
 
     public String getGroup() {
@@ -149,9 +179,12 @@ public class ContactData {
         if (!Objects.equals(home, that.home)) return false;
         if (!Objects.equals(mobile, that.mobile)) return false;
         if (!Objects.equals(work, that.work)) return false;
+        if (!Objects.equals(home2, that.home2)) return false;
         if (!Objects.equals(allPhones, that.allPhones)) return false;
         if (!Objects.equals(email, that.email)) return false;
-        if (!Objects.equals(allAddresses, that.allAddresses)) return false;
+        if (!Objects.equals(email2, that.email2)) return false;
+        if (!Objects.equals(email3, that.email3)) return false;
+        if (!Objects.equals(allEmails, that.allEmails)) return false;
         return Objects.equals(group, that.group);
     }
 
@@ -165,9 +198,12 @@ public class ContactData {
         result = 31 * result + (home != null ? home.hashCode() : 0);
         result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
         result = 31 * result + (work != null ? work.hashCode() : 0);
+        result = 31 * result + (home2 != null ? home2.hashCode() : 0);
         result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (allAddresses != null ? allAddresses.hashCode() : 0);
+        result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+        result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+        result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
         result = 31 * result + (group != null ? group.hashCode() : 0);
         return result;
     }

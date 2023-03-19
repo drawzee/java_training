@@ -31,10 +31,13 @@ public class ContactPhoneTests extends TestBase {
                     .withLastName("Test")
                     .withCompany("Test LTD")
                     .withAddress("Test st., 123")
-                    .withHome("123123123")
-                    .withMobile("111111111")
-                    .withWork("999999999")
+                    .withHome("123-123-123")
+                    .withMobile("+111111111")
+                    .withWork("9(999)99999")
+                    .withHome2("555555555")
                     .withEmail("email@test.com")
+                    .withEmail2("2.email@test.com")
+                    .withEmail3("3.email@test.com")
                     .withGroup(CurrentGroup)
             );
         }
@@ -47,24 +50,25 @@ public class ContactPhoneTests extends TestBase {
         ContactData infoFromEditForm = app.contact().infoFromEditForm(contact);
 
         assertThat("phones don't match", contact.getAllPhones(), equalTo(mergePhones(infoFromEditForm)));
-        assertThat("addresses don't match", contact.getAllAddresses(), equalTo(mergeAddresses(infoFromEditForm)));
+        assertThat("address doesn't match", contact.getAddress(), equalTo(infoFromEditForm.getAddress()));
+        assertThat("emails don't match", contact.getAllEmails(), equalTo(mergeEmails(infoFromEditForm)));
     }
 
     public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "").replaceAll("[-+()]", "");
+        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 
     private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork())
+        return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork(), contact.getHome2())
                 .stream().filter((s) -> !s.equals(""))
                 .map(ContactPhoneTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
-    private String mergeAddresses(ContactData contact) {
-        return Arrays.asList(contact.getAddress(), contact.getEmail())
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> !s.equals(""))
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining("\n"));
     }
 
 }
