@@ -33,7 +33,6 @@ public class ContactCreationTests extends TestBase {
         ContactData contact = new ContactData()
                 .withFirstName("Test")
                 .withLastName("Test")
-                .withCompany("Test LTD")
                 .withAddress("Test st., 123")
                 .withHome("123123123")
                 .withEmail("email@test.com")

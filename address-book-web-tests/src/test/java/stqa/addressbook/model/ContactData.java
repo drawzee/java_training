@@ -185,7 +185,6 @@ public class ContactData {
         if (id != that.id) return false;
         if (!Objects.equals(firstname, that.firstname)) return false;
         if (!Objects.equals(lastname, that.lastname)) return false;
-        if (!Objects.equals(company, that.company)) return false;
         if (!Objects.equals(address, that.address)) return false;
         if (!Objects.equals(home, that.home)) return false;
         if (!Objects.equals(mobile, that.mobile)) return false;
@@ -204,7 +203,6 @@ public class ContactData {
         int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (home != null ? home.hashCode() : 0);
         result = 31 * result + (mobile != null ? mobile.hashCode() : 0);

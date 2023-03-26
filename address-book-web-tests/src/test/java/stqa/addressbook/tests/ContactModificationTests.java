@@ -27,7 +27,6 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData()
                             .withFirstName("Test")
                             .withLastName("Test")
-                            .withCompany("Test LTD")
                             .withAddress("Test st., 123")
                             .withHome("123123123")
                             .withEmail("email@test.com")
@@ -45,7 +44,6 @@ public class ContactModificationTests extends TestBase {
                 .withId(modifiedContact.getId())
                 .withFirstName("Test1")
                 .withLastName("Test1")
-                .withCompany("Test LTD")
                 .withAddress("Test st., 123")
                 .withHome("123123123")
                 .withEmail("email@test.com");
