@@ -193,9 +193,9 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        return Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.firstname) &&
-                Objects.equals(address, that.address);
+        if (!Objects.equals(firstname, that.firstname)) return false;
+        if (!Objects.equals(lastname, that.lastname)) return false;
+        return Objects.equals(address, that.address);
     }
 
     @Override
