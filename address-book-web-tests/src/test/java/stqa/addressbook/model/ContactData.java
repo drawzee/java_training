@@ -183,17 +183,9 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        if (!Objects.equals(firstname, that.firstname)) return false;
-        if (!Objects.equals(lastname, that.lastname)) return false;
-        if (!Objects.equals(address, that.address)) return false;
-        if (!Objects.equals(home, that.home)) return false;
-        if (!Objects.equals(mobile, that.mobile)) return false;
-        if (!Objects.equals(work, that.work)) return false;
-        if (!Objects.equals(home2, that.home2)) return false;
-        if (!Objects.equals(email, that.email)) return false;
-        if (!Objects.equals(email2, that.email2)) return false;
-        if (!Objects.equals(email3, that.email3)) return false;
-        return Objects.equals(group, that.group);
+        return Objects.equals(firstname, that.firstname) &&
+                Objects.equals(lastname, that.firstname) &&
+                Objects.equals(address, that.address);
     }
 
     @Override
@@ -202,16 +194,6 @@ public class ContactData {
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (home != null ? home.hashCode() : 0);
-        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
-        result = 31 * result + (work != null ? work.hashCode() : 0);
-        result = 31 * result + (home2 != null ? home2.hashCode() : 0);
-        result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (email2 != null ? email2.hashCode() : 0);
-        result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-        result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
         return result;
     }
 
