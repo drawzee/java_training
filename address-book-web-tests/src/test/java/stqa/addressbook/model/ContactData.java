@@ -190,11 +190,9 @@ public class ContactData {
         if (!Objects.equals(mobile, that.mobile)) return false;
         if (!Objects.equals(work, that.work)) return false;
         if (!Objects.equals(home2, that.home2)) return false;
-        if (!Objects.equals(allPhones, that.allPhones)) return false;
         if (!Objects.equals(email, that.email)) return false;
         if (!Objects.equals(email2, that.email2)) return false;
         if (!Objects.equals(email3, that.email3)) return false;
-        if (!Objects.equals(allEmails, that.allEmails)) return false;
         return Objects.equals(group, that.group);
     }
 
