@@ -31,7 +31,7 @@ public class AppManager {
         } else if (browser.equals(Browser.EDGE)) {
             wd = new EdgeDriver();
         }
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         sessionHelper = new SessionHelper(wd);
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
