@@ -11,7 +11,7 @@ public class GroupData {
 
     @XStreamOmitField //exclude from xml files
     private int id = Integer.MAX_VALUE;
-    @Expose //include in json file
+    @Expose //include in json files
     private String name;
     @Expose
     private String header;

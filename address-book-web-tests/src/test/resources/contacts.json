@@ -2,16 +2,19 @@
   {
     "firstname": "Name0",
     "lastname": "Surname0",
-    "address": "Test st., 0"
+    "address": "Test st., 0",
+    "group": "Test 0"
   },
   {
     "firstname": "Name1",
     "lastname": "Surname1",
-    "address": "Test st., 1"
+    "address": "Test st., 1",
+    "group": "Test 0"
   },
   {
     "firstname": "Name2",
     "lastname": "Surname2",
-    "address": "Test st., 2"
+    "address": "Test st., 2",
+    "group": "Test 0"
   }
 ]

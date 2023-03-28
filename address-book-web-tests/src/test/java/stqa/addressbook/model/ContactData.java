@@ -12,7 +12,7 @@ public class ContactData {
 
     @XStreamOmitField //exclude from xml files
     private int id = Integer.MAX_VALUE;
-    @Expose //include in json file
+    @Expose //include in json files
     private String firstname;
     @Expose
     private String lastname;
@@ -28,6 +28,7 @@ public class ContactData {
     private String email2;
     private String email3;
     private String allEmails;
+    @Expose
     private String group;
     private File photo;
 
