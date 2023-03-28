@@ -3,6 +3,7 @@ package stqa.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.thoughtworks.xstream.XStream;
 import stqa.addressbook.model.GroupData;
 
 import java.io.File;
@@ -20,6 +21,8 @@ public class GroupDataGenerator {
     @Parameter(names = "-f", description = "Target file")
     public String file;
 
+    @Parameter(names = "-d", description = "Data format")
+    public String format;
 
     public static void main(String[] args) throws IOException {
         GroupDataGenerator generator = new GroupDataGenerator();
@@ -35,7 +38,17 @@ public class GroupDataGenerator {
 
     private void run() throws IOException {
         List<GroupData> groups = generateGroups(count);
-        save(groups, new File(file));
+        switch (format) {
+            case "csv":
+                saveCsv(groups, new File(file));
+                break;
+            case "xml":
+                saveXml(groups, new File(file));
+                break;
+            default:
+                System.out.println("Format " + format + " is not supported");
+                break;
+        }
     }
 
     private List<GroupData> generateGroups(int count) {
@@ -48,11 +61,21 @@ public class GroupDataGenerator {
         return groups;
     }
 
-    private void save(List<GroupData> groups, File file) throws IOException {
+    private void saveCsv(List<GroupData> groups, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (GroupData group : groups) {
             writer.write(String.format("%s,%s,%s\n", group.getName(), group.getHeader(), group.getFooter()));
         }
+        writer.close();
+    }
+
+
+    private void saveXml(List<GroupData> groups, File file) throws IOException {
+        XStream xstream = new XStream();
+        xstream.processAnnotations(GroupData.class);
+        String xml = xstream.toXML(groups);
+        Writer writer = new FileWriter(file);
+        writer.write(xml);
         writer.close();
     }
 
