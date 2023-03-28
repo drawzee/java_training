@@ -1,0 +1,20 @@
+<list>
+  <contact>
+    <firstname>Name0</firstname>
+    <lastname>Surname0</lastname>
+    <address>Test st., 0</address>
+    <group>Test 0</group>
+  </contact>
+  <contact>
+    <firstname>Name1</firstname>
+    <lastname>Surname1</lastname>
+    <address>Test st., 1</address>
+    <group>Test 0</group>
+  </contact>
+  <contact>
+    <firstname>Name2</firstname>
+    <lastname>Surname2</lastname>
+    <address>Test st., 2</address>
+    <group>Test 0</group>
+  </contact>
+</list>
