@@ -59,12 +59,10 @@ public class ContactCreationTests extends TestBase {
     @BeforeMethod
     public void checkPreconditions() {
         app.session().login("admin", "secret");
-        /*
         app.goTo().groupPage();
-        if (!app.group().exists()) {
-            app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
+        if (!app.group().exists() || !app.wd.findElement(By.className("group")).getText().equals("Test 0")) {
+            app.group().create(new GroupData().withName("Test 0").withHeader("Test header").withFooter("Test footer"));
         }
-         */
     }
 
     @Test(dataProvider = "contactsXml")
