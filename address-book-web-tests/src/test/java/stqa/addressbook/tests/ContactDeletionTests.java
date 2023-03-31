@@ -14,7 +14,6 @@ public class ContactDeletionTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.session().login("admin", "secret");
         app.goTo().homePage();
         if (!app.contact().exists()) {
             app.goTo().groupPage();
@@ -46,7 +45,6 @@ public class ContactDeletionTests extends TestBase {
         app.goTo().homePage();
         Contacts finalContacts = app.contact().all();
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() - 1));
-        app.session().logout();
 
         assertThat("elements don't match", finalContacts, equalTo(initialContacts.without(deletedContact)));
     }

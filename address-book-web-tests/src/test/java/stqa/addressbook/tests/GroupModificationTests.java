@@ -12,7 +12,6 @@ public class GroupModificationTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.session().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
             app.group().create(new GroupData().withName("Test"));
@@ -30,7 +29,6 @@ public class GroupModificationTests extends TestBase {
         app.goTo().groupPage();
         assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size()));
         Groups finalGroups = app.group().all();
-        app.session().logout();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(modifiedGroup).withAdded(group)));
     }

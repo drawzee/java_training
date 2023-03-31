@@ -30,16 +30,17 @@ public class AppManager {
     }
 
     public void init() throws IOException {
+        System.setProperty("webdriver.gecko.driver", "/Users/nikolay.primizenkin/geckodriver");
         String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties"), target)));
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-        if (browser.equals(BrowserType.FIREFOX)) {
-            wd = new FirefoxDriver();
-        } else if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-        } else if (browser.equals(BrowserType.EDGE)) {
-            wd = new EdgeDriver();
+        switch (browser) {
+            case BrowserType.FIREFOX -> wd = new FirefoxDriver();
+            case BrowserType.CHROME -> wd = new ChromeDriver();
+            case BrowserType.EDGE -> wd = new EdgeDriver();
+            default -> throw new IllegalStateException("Unexpected value: " + browser);
         }
+
         wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
         sessionHelper = new SessionHelper(wd);

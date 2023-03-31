@@ -58,7 +58,6 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.session().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists() || !app.wd.findElement(By.className("group")).getText().equals("Test 0")) {
             app.group().create(new GroupData().withName("Test 0").withHeader("Test header").withFooter("Test footer"));
@@ -86,7 +85,6 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts finalContacts = app.contact().all();
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() + 1));
-        app.session().logout();
 
         assertThat("elements don't match", finalContacts, equalTo(
                 initialContacts.withAdded(contact.withId(finalContacts.stream().mapToInt((c) -> c.getId()).max().getAsInt())

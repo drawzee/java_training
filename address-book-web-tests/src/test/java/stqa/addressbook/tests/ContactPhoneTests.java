@@ -16,7 +16,6 @@ public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.session().login("admin", "secret");
         app.goTo().homePage();
         if (!app.contact().exists()) {
             app.goTo().groupPage();

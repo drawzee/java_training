@@ -12,7 +12,6 @@ public class GroupDeletionTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.session().login("admin", "secret");
         app.goTo().groupPage();
         if (!app.group().exists()) {
             app.group().create(new GroupData().withName("Test"));
@@ -28,7 +27,6 @@ public class GroupDeletionTests extends TestBase {
         app.goTo().groupPage();
         assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size() - 1));
         Groups finalGroups = app.group().all();
-        app.session().logout();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(deletedGroup)));
     }

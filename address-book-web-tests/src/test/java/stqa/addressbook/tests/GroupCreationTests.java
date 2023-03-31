@@ -52,14 +52,12 @@ public class GroupCreationTests extends TestBase {
 
     @Test(dataProvider = "validGroupsJson")
     public void testGroupCreation(GroupData group) {
-        app.session().login("admin", "secret");
         app.goTo().groupPage();
         Groups initialGroups = app.group().all();
         app.group().create(group);
         app.goTo().groupPage();
         assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size() + 1));
         Groups finalGroups = app.group().all();
-        app.session().logout();
         assertThat("elements don't match", finalGroups, equalTo(
                 initialGroups.withAdded(group.withId(finalGroups.stream().mapToInt((g) -> g.getId()).max().getAsInt()))
         ));
@@ -67,7 +65,6 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void testInvalidGroupCreation() {
-        app.session().login("admin", "secret");
         app.goTo().groupPage();
         Groups initialGroups = app.group().all();
         GroupData group = new GroupData().withName("Test'");
@@ -75,7 +72,6 @@ public class GroupCreationTests extends TestBase {
         app.goTo().groupPage();
         assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size()));
         Groups finalGroups = app.group().all();
-        app.session().logout();
         assertThat("elements don't match", finalGroups, equalTo(initialGroups));
     }
 
