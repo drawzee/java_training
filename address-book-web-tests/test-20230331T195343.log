@@ -1,0 +1,4 @@
+271  [main] DEBUG org.testng.TestNG -- suiteXmlPath: "/Users/nikolay.primizenkin/Library/Caches/JetBrains/IdeaIC2021.2/temp-testng-customsuite.xml"
+405  [main] INFO  org.testng.internal.Utils -- [TestNG] Running:
+  /Users/nikolay.primizenkin/Library/Caches/JetBrains/IdeaIC2021.2/temp-testng-customsuite.xml
+

@@ -30,9 +30,9 @@ public class AppManager {
     }
 
     public void init() throws IOException {
-        System.setProperty("webdriver.gecko.driver", "/Users/nikolay.primizenkin/geckodriver");
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        System.setProperty("webdriver.gecko.driver", properties.getProperty("driver"));
 
         switch (browser) {
             case BrowserType.FIREFOX -> wd = new FirefoxDriver();
