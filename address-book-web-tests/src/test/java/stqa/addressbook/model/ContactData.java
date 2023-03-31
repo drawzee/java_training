@@ -3,14 +3,19 @@ package stqa.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
 
     @XStreamOmitField //exclude from xml files
+    @Id
     private int id = Integer.MAX_VALUE;
     @Expose //include in json files
     private String firstname;
@@ -18,19 +23,32 @@ public class ContactData {
     private String lastname;
     private String company;
     @Expose
+    @Type(type = "text")
     private String address;
+    @Type(type = "text")
     private String home;
+    @Type(type = "text")
     private String mobile;
+    @Type(type = "text")
     private String work;
+    @Type(type = "text")
+    @Column(name = "phone2")
     private String home2;
+    @Transient
     private String allPhones;
+    @Type(type = "text")
     private String email;
+    @Type(type = "text")
     private String email2;
+    @Type(type = "text")
     private String email3;
+    @Transient
     private String allEmails;
     @Expose
+    @Transient
     private String group;
-    private File photo;
+    @Type(type = "text")
+    private String photo;
 
     public ContactData withId(int id) {
         this.id = id;
@@ -108,7 +126,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -173,7 +191,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     @Override

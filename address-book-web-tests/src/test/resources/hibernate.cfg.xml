@@ -11,6 +11,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">validate</property>
         <mapping class="stqa.addressbook.model.GroupData"/>
+        <mapping class="stqa.addressbook.model.ContactData"/>
     </session-factory>
 
 </hibernate-configuration>
