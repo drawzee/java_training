@@ -3,7 +3,7 @@
     <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>test-${bySecond}.log</file>
+        <file>logs/test-${bySecond}.log</file>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
