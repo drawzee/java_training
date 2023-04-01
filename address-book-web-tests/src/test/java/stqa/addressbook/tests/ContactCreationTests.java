@@ -59,7 +59,7 @@ public class ContactCreationTests extends TestBase {
     @BeforeMethod
     public void checkPreconditions() {
         app.goTo().groupPage();
-        if (!app.group().exists() || !app.wd.findElement(By.className("group")).getText().equals("Test 0")) {
+        if (app.db().groups().size() == 0 || !app.wd.findElement(By.className("group")).getText().equals("Test 0")) {
             app.group().create(new GroupData().withName("Test 0").withHeader("Test header").withFooter("Test footer"));
         }
     }
@@ -69,7 +69,7 @@ public class ContactCreationTests extends TestBase {
         //app.goTo().groupPage();
         //String CurrentGroup = app.wd.findElement(By.className("group")).getText();
         app.goTo().homePage();
-        Contacts initialContacts = app.contact().all();
+        Contacts initialContacts = app.db().contacts();
         /*
         File photo = new File("src/test/resources/contact_photo.png");
         ContactData contact = new ContactData()
@@ -83,7 +83,7 @@ public class ContactCreationTests extends TestBase {
          */
         app.contact().create(contact);
         app.goTo().homePage();
-        Contacts finalContacts = app.contact().all();
+        Contacts finalContacts = app.db().contacts();
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() + 1));
 
         assertThat("elements don't match", finalContacts, equalTo(

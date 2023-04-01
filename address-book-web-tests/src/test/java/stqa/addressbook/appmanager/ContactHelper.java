@@ -9,20 +9,15 @@ import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.Contacts;
 
 import java.util.List;
-import java.util.Properties;
 
 public class ContactHelper extends HelperBase {
 
-    private Properties properties;
-
     public ContactHelper(WebDriver wd) {
         super(wd);
-        properties = new Properties();
     }
 
     public void initContactAdding() {
         click(By.linkText("add new"));
-        wd.get(properties.getProperty("web.edit"));
     }
 
     public void initContactModification() {
@@ -45,7 +40,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-        attach(By.name("photo"), contactData.getPhoto());
+        //attach(By.name("photo"), contactData.getPhoto());
 
         if (create) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());

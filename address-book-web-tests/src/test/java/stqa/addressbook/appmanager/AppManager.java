@@ -23,6 +23,7 @@ public class AppManager {
     private ContactHelper contactHelper;
     private HelperBase baseHelper;
     private String browser;
+    private DbHelper dbHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -33,6 +34,8 @@ public class AppManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         System.setProperty("webdriver.gecko.driver", properties.getProperty("driver"));
+
+        dbHelper = new DbHelper();
 
         switch (browser) {
             case BrowserType.FIREFOX -> wd = new FirefoxDriver();
@@ -73,6 +76,10 @@ public class AppManager {
 
     public HelperBase base() {
         return baseHelper;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 
 }

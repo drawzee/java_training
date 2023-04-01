@@ -2,19 +2,15 @@
   <contact>
     <firstname>Name0</firstname>
     <lastname>Surname0</lastname>
+    <company>Test0 LTD</company>
     <address>Test st., 0</address>
-    <group>Test 0</group>
-  </contact>
-  <contact>
-    <firstname>Name1</firstname>
-    <lastname>Surname1</lastname>
-    <address>Test st., 1</address>
-    <group>Test 0</group>
-  </contact>
-  <contact>
-    <firstname>Name2</firstname>
-    <lastname>Surname2</lastname>
-    <address>Test st., 2</address>
+    <home>111-123-0</home>
+    <mobile>222-123-0</mobile>
+    <work>333-123-0</work>
+    <home2>444-123-0</home2>
+    <email>email0@test.com</email>
+    <email2>email0@qa.com</email2>
+    <email3>email0@cc.com</email3>
     <group>Test 0</group>
   </contact>
 </list>

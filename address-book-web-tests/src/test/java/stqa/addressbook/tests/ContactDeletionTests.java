@@ -15,9 +15,9 @@ public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void checkPreconditions() {
         app.goTo().homePage();
-        if (!app.contact().exists()) {
+        if (app.db().contacts().size() == 0) {
             app.goTo().groupPage();
-            if (!app.group().exists()) {
+            if (app.db().groups().size() == 0) {
                 app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
             }
             app.goTo().groupPage();
@@ -38,12 +38,12 @@ public class ContactDeletionTests extends TestBase {
     @Test
     public void contactDeletionTest() {
         app.goTo().homePage();
-        Contacts initialContacts = app.contact().all();
+        Contacts initialContacts = app.db().contacts();
         ContactData deletedContact = initialContacts.iterator().next();
         app.contact().delete(deletedContact);
         app.base().acceptAlert();
         app.goTo().homePage();
-        Contacts finalContacts = app.contact().all();
+        Contacts finalContacts = app.db().contacts();
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() - 1));
 
         assertThat("elements don't match", finalContacts, equalTo(initialContacts.without(deletedContact)));
