@@ -47,6 +47,7 @@ public class ContactDeletionTests extends TestBase {
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size() - 1));
 
         assertThat("elements don't match", finalContacts, equalTo(initialContacts.without(deletedContact)));
+        verifyContactListInUI();
     }
 
 }

@@ -31,6 +31,7 @@ public class GroupModificationTests extends TestBase {
         Groups finalGroups = app.db().groups();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(modifiedGroup).withAdded(group)));
+        verifyGroupListInUI();
     }
 
 }

@@ -26,9 +26,15 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData()
                             .withFirstName("Test")
                             .withLastName("Test")
-                            .withAddress("Test st., 123")
-                            .withHome("123123123")
+                            .withCompany("Test LTD")
+                            .withAddress("Test ave, 111")
+                            .withHome("111111111")
+                            .withMobile("222222222")
+                            .withWork("333333333")
+                            .withHome2("444444444")
                             .withEmail("email@test.com")
+                            .withEmail2("email2@test.com")
+                            .withEmail3("email3@test.com")
                             .withGroup(CurrentGroup)
             );
         }
@@ -49,7 +55,7 @@ public class ContactModificationTests extends TestBase {
                 .withMobile("111222333")
                 .withWork("99887766")
                 .withHome2("123456789")
-                .withEmail("email@test.com")
+                .withEmail("1_email@test.com")
                 .withEmail2("2_email@test.com")
                 .withEmail3("3_email@test.com");
         app.contact().modify(contact);
@@ -58,6 +64,7 @@ public class ContactModificationTests extends TestBase {
         assertThat("invalid contact count", finalContacts.size(), equalTo(initialContacts.size()));
 
         assertThat("elements don't match", finalContacts, equalTo(initialContacts.without(modifiedContact).withAdded(contact)));
+        verifyContactListInUI();
     }
 
 }

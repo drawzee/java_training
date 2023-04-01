@@ -29,6 +29,7 @@ public class GroupDeletionTests extends TestBase {
         Groups finalGroups = app.db().groups();
 
         assertThat("elements don't match", finalGroups, equalTo(initialGroups.without(deletedGroup)));
+        verifyGroupListInUI();
     }
 
 }

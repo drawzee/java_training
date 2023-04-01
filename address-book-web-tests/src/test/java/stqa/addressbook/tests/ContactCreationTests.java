@@ -89,6 +89,7 @@ public class ContactCreationTests extends TestBase {
         assertThat("elements don't match", finalContacts, equalTo(
                 initialContacts.withAdded(contact.withId(finalContacts.stream().mapToInt((c) -> c.getId()).max().getAsInt())
         )));
+        verifyContactListInUI();
     }
 
 }

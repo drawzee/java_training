@@ -61,6 +61,7 @@ public class GroupCreationTests extends TestBase {
         assertThat("elements don't match", finalGroups, equalTo(
                 initialGroups.withAdded(group.withId(finalGroups.stream().mapToInt((g) -> g.getId()).max().getAsInt()))
         ));
+        verifyGroupListInUI();
     }
 
     @Test
@@ -73,6 +74,7 @@ public class GroupCreationTests extends TestBase {
         assertThat("invalid group count", app.group().count(), equalTo(initialGroups.size()));
         Groups finalGroups = app.db().groups();
         assertThat("elements don't match", finalGroups, equalTo(initialGroups));
+        verifyGroupListInUI();
     }
 
 }
