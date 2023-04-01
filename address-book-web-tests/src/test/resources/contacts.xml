@@ -11,6 +11,34 @@
     <email>email0@test.com</email>
     <email2>email0@qa.com</email2>
     <email3>email0@cc.com</email3>
-    <group>Test 0</group>
+    <groups/>
+  </contact>
+  <contact>
+    <firstname>Name1</firstname>
+    <lastname>Surname1</lastname>
+    <company>Test1 LTD</company>
+    <address>Test st., 1</address>
+    <home>111-123-1</home>
+    <mobile>222-123-1</mobile>
+    <work>333-123-1</work>
+    <home2>444-123-1</home2>
+    <email>email1@test.com</email>
+    <email2>email1@qa.com</email2>
+    <email3>email1@cc.com</email3>
+    <groups/>
+  </contact>
+  <contact>
+    <firstname>Name2</firstname>
+    <lastname>Surname2</lastname>
+    <company>Test2 LTD</company>
+    <address>Test st., 2</address>
+    <home>111-123-2</home>
+    <mobile>222-123-2</mobile>
+    <work>333-123-2</work>
+    <home2>444-123-2</home2>
+    <email>email2@test.com</email>
+    <email2>email2@qa.com</email2>
+    <email3>email2@cc.com</email3>
+    <groups/>
   </contact>
 </list>

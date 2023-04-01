@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.Contacts;
 import stqa.addressbook.model.GroupData;
+import stqa.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -14,14 +15,12 @@ public class ContactModificationTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.goTo().homePage();
         if (app.db().contacts().size() == 0) {
-            app.goTo().groupPage();
             if (app.db().groups().size() == 0) {
+                app.goTo().groupPage();
                 app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
             }
-            app.goTo().groupPage();
-            String CurrentGroup = app.wd.findElement(By.className("group")).getText();
+            Groups groups = app.db().groups();
             app.goTo().homePage();
             app.contact().create(new ContactData()
                             .withFirstName("Test")
@@ -35,7 +34,7 @@ public class ContactModificationTests extends TestBase {
                             .withEmail("email@test.com")
                             .withEmail2("email2@test.com")
                             .withEmail3("email3@test.com")
-                            .withGroup(CurrentGroup)
+                            .withGroup(groups.iterator().next())
             );
         }
     }

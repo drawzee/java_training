@@ -58,16 +58,14 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.goTo().groupPage();
-        if (app.db().groups().size() == 0 || !app.wd.findElement(By.className("group")).getText().equals("Test 0")) {
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
             app.group().create(new GroupData().withName("Test 0").withHeader("Test header").withFooter("Test footer"));
         }
     }
 
     @Test(dataProvider = "contactsXml")
     public void testAddContactTests(ContactData contact) {
-        //app.goTo().groupPage();
-        //String CurrentGroup = app.wd.findElement(By.className("group")).getText();
         app.goTo().homePage();
         Contacts initialContacts = app.db().contacts();
         /*

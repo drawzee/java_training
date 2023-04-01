@@ -1,10 +1,10 @@
 package stqa.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.GroupData;
+import stqa.addressbook.model.Groups;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -16,14 +16,12 @@ public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void checkPreconditions() {
-        app.goTo().homePage();
-        if (!app.contact().exists()) {
+        if (app.db().contacts().size() == 0) {
             app.goTo().groupPage();
-            if (!app.group().exists()) {
+            if (app.db().groups().size() == 0) {
                 app.group().create(new GroupData().withName("Test").withHeader("Test header").withFooter("Test footer"));
             }
-            app.goTo().groupPage();
-            String CurrentGroup = app.wd.findElement(By.className("group")).getText();
+            Groups groups = app.db().groups();
             app.goTo().homePage();
             app.contact().create(new ContactData()
                     .withFirstName("Test")
@@ -37,7 +35,7 @@ public class ContactPhoneTests extends TestBase {
                     .withEmail("email@test.com")
                     .withEmail2("2.email@test.com")
                     .withEmail3("3.email@test.com")
-                    .withGroup(CurrentGroup)
+                    .withGroup(groups.iterator().next())
             );
         }
     }

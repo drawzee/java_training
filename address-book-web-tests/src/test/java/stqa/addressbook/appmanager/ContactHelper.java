@@ -4,11 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.Contacts;
 
 import java.util.List;
+
+import static org.testng.Assert.*;
 
 public class ContactHelper extends HelperBase {
 
@@ -43,9 +44,12 @@ public class ContactHelper extends HelperBase {
         //attach(By.name("photo"), contactData.getPhoto());
 
         if (create) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroups().size() > 0) {
+                assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
         } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")), "Element is present");
+            assertFalse(isElementPresent(By.name("new_group")), "Element is present");
         }
     }
 

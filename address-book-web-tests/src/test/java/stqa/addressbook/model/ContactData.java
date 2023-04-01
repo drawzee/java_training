@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -17,36 +19,54 @@ public class ContactData {
     @XStreamOmitField //exclude from xml files
     @Id
     private int id = Integer.MAX_VALUE;
+
     @Expose //include in json files
     private String firstname;
+
     @Expose
     private String lastname;
+
     private String company;
+
     @Expose
     @Type(type = "text")
     private String address;
+
     @Type(type = "text")
     private String home;
+
     @Type(type = "text")
     private String mobile;
+
     @Type(type = "text")
     private String work;
+
     @Type(type = "text")
     @Column(name = "phone2")
     private String home2;
+
     @Transient
     private String allPhones;
+
     @Type(type = "text")
     private String email;
+
     @Type(type = "text")
     private String email2;
+
     @Type(type = "text")
     private String email3;
+
     @Transient
     private String allEmails;
-    @Expose
-    @Transient
-    private String group;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private Set<GroupData> groups = new HashSet<>();
 
     @Type(type = "text")
     private String photo;
@@ -121,8 +141,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
+    public ContactData withGroup(GroupData group) {
+        groups.add(group);
         return this;
     }
 
@@ -187,8 +207,8 @@ public class ContactData {
         return allEmails;
     }
 
-    public String getGroup() {
-        return group;
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     public File getPhoto() {
