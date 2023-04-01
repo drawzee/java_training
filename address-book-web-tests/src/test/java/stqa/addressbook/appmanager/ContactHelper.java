@@ -9,16 +9,20 @@ import stqa.addressbook.model.ContactData;
 import stqa.addressbook.model.Contacts;
 
 import java.util.List;
+import java.util.Properties;
 
 public class ContactHelper extends HelperBase {
 
+    private Properties properties;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
+        properties = new Properties();
     }
 
     public void initContactAdding() {
         click(By.linkText("add new"));
-        wd.get("http://localhost/addressbook/edit.php");
+        wd.get(properties.getProperty("web.edit"));
     }
 
     public void initContactModification() {
