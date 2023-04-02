@@ -33,8 +33,8 @@ public class HbConnectionTests {
     public void hbConnection() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery( "from ContactData" ).list();
-        for ( ContactData contact : result ) {
+        List<ContactData> result = session.createQuery("from ContactData").list();
+        for (ContactData contact : result) {
             System.out.println(contact);
             System.out.println("groups: " + contact.getGroups());
         }
