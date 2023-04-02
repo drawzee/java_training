@@ -83,6 +83,20 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
+    public void addToGroup(int contactId, String groupName) {
+        selectById(contactId);
+        wd.findElement(By.name("to_group")).click();
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void deleteFromGroup(int contactId, String groupName) {
+        wd.findElement(By.name("group")).click();
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+        selectById(contactId);
+        wd.findElement(By.name("remove")).click();
+    }
+
     public boolean exists() {
         return isElementPresent(By.name("selected[]"));
     }
