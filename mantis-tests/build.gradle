@@ -8,6 +8,7 @@ dependencies{
     implementation group: 'org.testng', name: 'testng', version: '7.7.1'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
+    implementation 'au.com.dius:pact-jvm-provider-gradle_2.12:3.6.15'
 }
 
 test {
