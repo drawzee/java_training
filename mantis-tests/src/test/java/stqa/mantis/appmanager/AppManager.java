@@ -15,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 public class AppManager {
 
     private final Properties properties;
-    public WebDriver wd;
+    private WebDriver wd;
 
     private String browser;
+    private RegistrationHelper registrationHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -28,20 +29,12 @@ public class AppManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         System.setProperty("webdriver.gecko.driver", properties.getProperty("driver"));
-
-        switch (browser) {
-            case BrowserType.FIREFOX -> wd = new FirefoxDriver();
-            case BrowserType.CHROME -> wd = new ChromeDriver();
-            case BrowserType.EDGE -> wd = new EdgeDriver();
-            default -> throw new IllegalStateException("Unexpected value: " + browser);
-        }
-
-        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+        }
     }
 
     public HttpSession newSession() {
@@ -50,6 +43,27 @@ public class AppManager {
 
     public String getProperty(String key) {
         return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            switch (browser) {
+                case BrowserType.FIREFOX -> wd = new FirefoxDriver();
+                case BrowserType.CHROME -> wd = new ChromeDriver();
+                case BrowserType.EDGE -> wd = new EdgeDriver();
+                default -> throw new IllegalStateException("Unexpected value: " + browser);
+            }
+
+            wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        } return wd;
     }
 
 }
