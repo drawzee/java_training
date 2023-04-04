@@ -7,9 +7,12 @@ repositories{
 dependencies{
     implementation group: 'org.testng', name: 'testng', version: '7.7.1'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.6'
     implementation group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
     implementation 'au.com.dius:pact-jvm-provider-gradle_2.12:3.6.15'
     implementation group: 'commons-net', name: 'commons-net', version: '3.7.1'
+    implementation group: 'org.subethamail', name: 'subethasmtp', version: '3.1.7'
+    implementation group: 'ru.lanwen.verbalregex', name: 'java-verbal-expressions', version: '1.8'
 }
 
 test {
