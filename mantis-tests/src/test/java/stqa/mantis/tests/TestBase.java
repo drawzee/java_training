@@ -1,7 +1,9 @@
 package stqa.mantis.tests;
 
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import stqa.mantis.appmanager.AppManager;
 
@@ -25,6 +27,17 @@ public class TestBase {
     public void tearDown() throws Exception {
         app.ftp().restore("config_inc.php.bak", "config_inc.php");
         app.stop();
+    }
+
+    @BeforeMethod
+    public void startMailServer() {
+        app.mail().start();
+    }
+
+
+    @AfterMethod(alwaysRun = true)
+    public void stopMailServer() {
+        app.mail().stop();
     }
 
 }

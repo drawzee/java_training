@@ -21,6 +21,9 @@ public class AppManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private NavigationHelper navigationHelper;
+    private DbHelper dbHelper;
+    private UserHelper userHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -31,6 +34,7 @@ public class AppManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         System.setProperty("webdriver.gecko.driver", properties.getProperty("driver"));
+        dbHelper = new DbHelper();
     }
 
     public void stop() {
@@ -47,7 +51,7 @@ public class AppManager {
         return properties.getProperty(key);
     }
 
-    public RegistrationHelper registration() {
+    public RegistrationHelper registration() throws IOException {
         if (registrationHelper == null) {
             registrationHelper = new RegistrationHelper(this);
         }
@@ -80,6 +84,27 @@ public class AppManager {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+
+    public NavigationHelper goTo() throws IOException {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper(this);
+        }
+        return navigationHelper;
+    }
+
+    public UserHelper users() throws IOException {
+        if (userHelper == null) {
+            userHelper = new UserHelper(this);
+        }
+        return userHelper;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper();
+        }
+        return dbHelper;
     }
 
 }

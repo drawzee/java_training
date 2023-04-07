@@ -1,10 +1,8 @@
 package stqa.mantis.tests;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.lanwen.verbalregex.VerbalExpression;
 import stqa.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
@@ -22,20 +20,14 @@ public class RegistrationTests extends TestBase {
 
     @Test
     public void registrationTest() throws MessagingException, IOException {
-        String email = RandomStringUtils.randomAlphabetic(5) + "@localhost.localdomain";
-        String user = "user" + RandomStringUtils.randomNumeric(5);
+        String email = app.registration().randomEmail();
+        String user = app.registration().randomUsername();
         String pass = "password";
         app.registration().start(user, email);
         List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        String confirmationLink = findConfirmationLink(mailMessages, email);
-        app.registration().finish(confirmationLink, pass, user);
+        String confirmationLink = app.registration().findConfirmationLink(mailMessages, email);
+        app.registration().finish(confirmationLink, pass);
         assertTrue(app.newSession().login(user, pass));
-    }
-
-    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-        return regex.getText(mailMessage.text);
     }
 
     @AfterMethod(alwaysRun = true)
