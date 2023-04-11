@@ -13,7 +13,7 @@ import java.io.IOException;
 
     public void resetPass(int id, String username) {
         click(By.linkText(username));
-        wd.get(app.getProperty("web.baseUrl") + "/manage_user_edit_page.php?user_id=" + String.valueOf(id));
+        wd.get(app.getProperty("web.baseUrl") + "/manage_user_edit_page.php?user_id=" + id);
         click(By.xpath("//input[@value='Reset Password']"));
     }
 

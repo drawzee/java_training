@@ -22,8 +22,8 @@ public class NavigationHelper extends HelperBase {
 
     public void manageUsers() {
         wd.get(app.getProperty("web.baseUrl") + "/my_view_page.php");
-        click(By.xpath("//a[@href='/mantisbt/manage_overview_page.php']"));
-        click(By.xpath("//a[@href='/mantisbt/manage_user_page.php']"));
+        click(By.xpath("//a[@href='/" + app.getProperty("web.domain") + "/manage_overview_page.php']"));
+        click(By.xpath("//a[@href='/" + app.getProperty("web.domain") + "/manage_user_page.php']"));
     }
 
     public void logout() {
