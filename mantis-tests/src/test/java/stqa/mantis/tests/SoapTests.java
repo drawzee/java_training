@@ -1,7 +1,6 @@
 package stqa.mantis.tests;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.mantis.model.Issue;
 import stqa.mantis.model.Project;
@@ -32,6 +31,7 @@ public class SoapTests extends TestBase {
                 .withDescription("Test description")
                 .withProject(projects.iterator().next());
         Issue created = app.soap().addIssue(issue);
+
         assertEquals(issue.getSummary(), created.getSummary(), "summaries don't match");
     }
 
@@ -44,7 +44,7 @@ public class SoapTests extends TestBase {
         app.soap().addProject(name);
         Set<Project> finalProjects = app.soap().getProjects();
 
-        Assert.assertEquals(finalProjects.size(), initialProjects.size() + 1, "invalid project count");
+        assertEquals(finalProjects.size(), initialProjects.size() + 1, "invalid project count");
     }
 
 }
