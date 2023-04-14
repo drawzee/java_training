@@ -34,7 +34,6 @@ public class TestBase {
         app.mail().start();
     }
 
-
     @AfterMethod(alwaysRun = true)
     public void stopMailServer() {
         app.mail().stop();
