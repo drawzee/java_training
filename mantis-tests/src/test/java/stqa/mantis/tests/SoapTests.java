@@ -1,5 +1,6 @@
 package stqa.mantis.tests;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.mantis.model.Issue;
@@ -9,6 +10,8 @@ import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Set;
+
+import static org.testng.Assert.*;
 
 public class SoapTests extends TestBase {
 
@@ -28,16 +31,20 @@ public class SoapTests extends TestBase {
                 .withSummary("Test issue")
                 .withDescription("Test description")
                 .withProject(projects.iterator().next());
-
         Issue created = app.soap().addIssue(issue);
-        Assert.assertEquals(issue.getSummary(), created.getSummary(), "summaries don't match");
+        assertEquals(issue.getSummary(), created.getSummary(), "summaries don't match");
     }
 
-    /*
-    @Test
-    public void getIssueStatusTest() throws MalformedURLException, ServiceException, RemoteException {
-        System.out.println("Status is " + app.soap().getIssueStatus(0000002));
+    @Test //assume creating is impossible until bug #0000002 is fixed
+    public void createProjectTest() throws MalformedURLException, ServiceException, RemoteException {
+        int issueId = 0000002;
+        String name = RandomStringUtils.randomAlphabetic(5) + " test";
+        skipIfNotFixed(issueId);
+        Set<Project> initialProjects = app.soap().getProjects();
+        app.soap().addProject(name);
+        Set<Project> finalProjects = app.soap().getProjects();
+
+        Assert.assertEquals(finalProjects.size(), initialProjects.size() + 1, "invalid project count");
     }
-     */
 
 }

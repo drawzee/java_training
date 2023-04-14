@@ -1,13 +1,17 @@
 package stqa.mantis.tests;
 
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import stqa.mantis.appmanager.AppManager;
 
+import javax.xml.rpc.ServiceException;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 
 public class TestBase {
 
@@ -37,6 +41,19 @@ public class TestBase {
     @AfterMethod(alwaysRun = true)
     public void stopMailServer() {
         app.mail().stop();
+    }
+
+    boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        if (app.soap().getIssueStatus(issueId).equals("resolved") || app.soap().getIssueStatus(issueId).equals("closed")) {
+            return false;
+        }
+        else return true;
+    }
+
+    public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        if (isIssueOpen(issueId)) {
+            throw new SkipException("Ignored because of issue " + issueId);
+        }
     }
 
 }
