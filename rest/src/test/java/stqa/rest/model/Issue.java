@@ -1,15 +1,20 @@
-package stqa.rest;
+package stqa.rest.model;
 
 import java.util.Objects;
 
 public class Issue {
 
     private int id;
+    private String status;
     private String subject;
     private String description;
 
     public int getId() {
         return id;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getSubject() {
@@ -25,6 +30,11 @@ public class Issue {
         return this;
     }
 
+    public Issue withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
     public Issue withSubject(String subject) {
         this.subject = subject;
         return this;
@@ -34,6 +44,7 @@ public class Issue {
         this.description = description;
         return this;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,6 +53,7 @@ public class Issue {
         Issue issue = (Issue) o;
 
         if (id != issue.id) return false;
+        if (!Objects.equals(status, issue.status)) return false;
         if (!Objects.equals(subject, issue.subject)) return false;
         return Objects.equals(description, issue.description);
     }
@@ -49,6 +61,7 @@ public class Issue {
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
