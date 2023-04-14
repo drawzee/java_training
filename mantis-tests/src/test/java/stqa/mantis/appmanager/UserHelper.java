@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import java.io.IOException;
 
-    public class UserHelper extends HelperBase {
+public class UserHelper extends HelperBase {
 
     public UserHelper(AppManager app) throws IOException {
         super(app);

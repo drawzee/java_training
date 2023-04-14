@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'com.yupzip.wsdl2java'
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    implementation group: 'org.testng', name: 'testng', version: '7.7.1'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    implementation "jakarta.xml.ws:jakarta.xml.ws-api:4.0.0"
+    implementation "com.sun.xml.ws:jaxws-rt:4.0.1"
+}
+
+buildscript{
+    repositories{
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.yupzip:wsdl2java:2.3.2'
+    }
+}
+
+wsdl2java {
+    wsdlDir = file("src/main/java")
+    wsdlsToGenerate = [
+            ["$projectDir/src/main/resources/geoip.wsdl"]
+    ]
+}
+
+test {
+    useTestNG()
+}
