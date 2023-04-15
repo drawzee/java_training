@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="stqa.addressbook.tests.ContactModificationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-04-01T22:35:36" hostname="NB-PRIMIZENKIN.local" time="5.231">
+  <properties/>
+  <testcase name="contactModificationTest" classname="stqa.addressbook.tests.ContactModificationTests" time="5.231">
+    <failure message="java.lang.AssertionError: elements don't match&#10;Expected: &lt;[ContactData{id=202, firstname='Test1', lastname='Test1'}, ContactData{id=200, firstname='Name0', lastname='Surname0'}]&gt;&#10;     but: was &lt;[ContactData{id=202, firstname='Name2', lastname='Surname2'}, ContactData{id=200, firstname='Test1', lastname='Test1'}]&gt;" type="java.lang.AssertionError">java.lang.AssertionError: elements don't match
+Expected: &lt;[ContactData{id=202, firstname='Test1', lastname='Test1'}, ContactData{id=200, firstname='Name0', lastname='Surname0'}]&gt;
+     but: was &lt;[ContactData{id=202, firstname='Name2', lastname='Surname2'}, ContactData{id=200, firstname='Test1', lastname='Test1'}]&gt;
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:18)
+	at stqa.addressbook.tests.ContactModificationTests.contactModificationTest(ContactModificationTests.java:65)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:145)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:92)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <system-out><![CDATA[01:35:36.262 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Start test contactModificationTest with parameters []
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.company as company3_1_, contactdat0_.email as email4_1_, contactdat0_.email2 as email5_1_, contactdat0_.email3 as email6_1_, contactdat0_.firstname as firstnam7_1_, contactdat0_.home as home8_1_, contactdat0_.phone2 as phone9_1_, contactdat0_.lastname as lastnam10_1_, contactdat0_.mobile as mobile11_1_, contactdat0_.photo as photo12_1_, contactdat0_.work as work13_1_ from addressbook contactdat0_
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.company as company3_1_, contactdat0_.email as email4_1_, contactdat0_.email2 as email5_1_, contactdat0_.email3 as email6_1_, contactdat0_.firstname as firstnam7_1_, contactdat0_.home as home8_1_, contactdat0_.phone2 as phone9_1_, contactdat0_.lastname as lastnam10_1_, contactdat0_.mobile as mobile11_1_, contactdat0_.photo as photo12_1_, contactdat0_.work as work13_1_ from addressbook contactdat0_
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.company as company3_1_, contactdat0_.email as email4_1_, contactdat0_.email2 as email5_1_, contactdat0_.email3 as email6_1_, contactdat0_.firstname as firstnam7_1_, contactdat0_.home as home8_1_, contactdat0_.phone2 as phone9_1_, contactdat0_.lastname as lastnam10_1_, contactdat0_.mobile as mobile11_1_, contactdat0_.photo as photo12_1_, contactdat0_.work as work13_1_ from addressbook contactdat0_
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+01:35:41.523 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Stop test contactModificationTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

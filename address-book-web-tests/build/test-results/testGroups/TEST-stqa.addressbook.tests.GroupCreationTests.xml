@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="stqa.addressbook.tests.GroupCreationTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-04-01T20:52:55" hostname="NB-PRIMIZENKIN.local" time="2.403">
+  <properties/>
+  <testcase name="testGroupCreation[0](GroupData{id='2147483647', name='Test 0'})" classname="stqa.addressbook.tests.GroupCreationTests" time="1.299"/>
+  <testcase name="testInvalidGroupCreation" classname="stqa.addressbook.tests.GroupCreationTests" time="1.101"/>
+  <system-out><![CDATA[23:52:55.902 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Start test testGroupCreation with parameters [GroupData{id='2147483647', name='Test 0'}]
+Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
+Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
+23:52:57.204 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Stop test testGroupCreation
+23:52:57.205 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Start test testInvalidGroupCreation with parameters []
+Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
+Hibernate: select groupdata0_.group_id as group_id1_1_, groupdata0_.group_footer as group_fo2_1_, groupdata0_.group_header as group_he3_1_, groupdata0_.group_name as group_na4_1_ from group_list groupdata0_
+23:52:58.307 [Test worker] INFO  stqa.addressbook.tests.TestBase -- Stop test testInvalidGroupCreation
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
