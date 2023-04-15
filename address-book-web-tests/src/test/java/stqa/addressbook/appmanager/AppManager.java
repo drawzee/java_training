@@ -1,14 +1,18 @@
 package stqa.addressbook.appmanager;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -37,11 +41,17 @@ public class AppManager {
 
         dbHelper = new DbHelper();
 
-        switch (browser) {
-            case BrowserType.FIREFOX -> wd = new FirefoxDriver();
-            case BrowserType.CHROME -> wd = new ChromeDriver();
-            case BrowserType.EDGE -> wd = new EdgeDriver();
-            default -> throw new IllegalStateException("Unexpected value: " + browser);
+        if ("".equals(properties.getProperty("selenium.server"))) {
+            switch (browser) {
+                case BrowserType.FIREFOX -> wd = new FirefoxDriver();
+                case BrowserType.CHROME -> wd = new ChromeDriver();
+                case BrowserType.EDGE -> wd = new EdgeDriver();
+                default -> throw new IllegalStateException("Unexpected value: " + browser);
+            }
+        } else {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName(browser);
+            wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
         wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
