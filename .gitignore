@@ -1,5 +1,6 @@
 .gradle
-build/
+build/*
+!build/test-results/*
 .DS_Store
 out/
 *.log
